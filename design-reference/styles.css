@@ -1,0 +1,103 @@
+/* ───────────────────────────────────────────────────────────────
+   GeoBukAA · 거북아  — Design tokens
+   Posture & turtle-neck (거북목) wellness app
+   Duotone brand: coral #E97451 × powder-blue #B0E0E6
+   ─────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Primary · Coral ─────────────────────────────── */
+  --coral-50:  #FDF1EC;
+  --coral-100: #FADBCF;
+  --coral-200: #F6BEAB;
+  --coral-300: #F1A187;
+  --coral-400: #ED8B6C;
+  --coral-500: #E97451;   /* brand primary */
+  --coral-600: #DC5E39;
+  --coral-700: #B84B2C;
+  --coral-800: #8C3A23;
+  --coral-900: #5E2718;
+
+  /* ── Neutral · warm (toward cream) ───────────────── */
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #FCF6E4;  /* cream */
+  --neutral-100: #F2EFE8;
+  --neutral-200: #E4E1DA;
+  --neutral-300: #D9D9D9;
+  --neutral-400: #B4B1AA;
+  --neutral-500: #8A867E;
+  --neutral-600: #635F58;
+  --neutral-700: #45423D;
+  --neutral-800: #2A2825;
+  --neutral-900: #16100C;
+
+  /* ── Brand surface · powder blue ─────────────────── */
+  --sky-100: #E6F4F6;
+  --sky-300: #C8E7EB;
+  --sky-500: #B0E0E6;   /* app background / duotone partner */
+  --sky-700: #7FBEC6;
+
+  /* ── Semantic & themes ───────────────────────────── */
+  --theme-coral: #E97451;
+  --theme-blue:  #468AD0;
+  --theme-teal:  #46A098;
+  --gold:        #F2B705;  /* points / coin */
+  --success:     #46A098;
+  --info:        #468AD0;
+  --danger:      #DC5E39;
+
+  /* ── Roles ───────────────────────────────────────── */
+  --primary:        var(--coral-500);
+  --primary-press:  var(--coral-600);
+  --on-primary:     var(--sky-500);  /* duotone: blue type on coral */
+  --on-primary-ink: #FFFFFF;         /* icons / solid on coral */
+  --surface:        var(--sky-500);
+  --on-surface:     var(--coral-500);
+  --ink:            var(--neutral-900);
+  --muted:          var(--neutral-500);
+
+  /* ── Radius ──────────────────────────────────────── */
+  --r-xs: 6px;
+  --r-sm: 8px;
+  --r-md: 12px;   /* cards */
+  --r-lg: 20px;
+  --r-pill: 9999px;
+
+  /* ── Spacing (4-base) ────────────────────────────── */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;   /* screen gutter */
+  --s-10: 40px;
+  --s-16: 64px;
+
+  /* ── Elevation ───────────────────────────────────── */
+  --elev-outline:  inset 0 0 0 2px var(--coral-500);
+  --elev-outline-1: inset 0 0 0 1px var(--coral-500);
+  --elev-sm: 0 2px 8px rgba(0,0,0,0.10);
+  --elev-md: 0 4px 16px rgba(0,0,0,0.10);
+  --elev-lg: 0 16px 40px rgba(0,0,0,0.16);
+
+  /* ── Type families ───────────────────────────────── */
+  --font-display: 'Gaegu', 'Pretendard', system-ui, sans-serif;  /* HGSisuns_Pro stand-in */
+  --font-body: 'Pretendard', -apple-system, system-ui, 'Apple SD Gothic Neo', sans-serif;
+
+  /* ── Type scale ──────────────────────────────────── */
+  --t-display: 60px;  /* Gaegu */
+  --t-h1: 40px;       /* Gaegu */
+  --t-title: 28px;    /* Gaegu */
+  --t-h2: 24px;
+  --t-h3: 20px;
+  --t-h4: 18px;
+  --t-body: 16px;
+  --t-body-sm: 14px;
+  --t-caption: 12px;
+  --t-micro: 10px;
+}
+
+* { box-sizing: border-box; }
+
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }

@@ -1,0 +1,15 @@
+@import './styles/tokens.css';
+
+html, body { margin: 0; height: 100%; }
+
+body {
+  background: radial-gradient(120% 120% at 50% 0%, #EAF6F8 0%, #D7ECEF 55%, #C6E2E6 100%);
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+button { font-family: var(--font-body); }

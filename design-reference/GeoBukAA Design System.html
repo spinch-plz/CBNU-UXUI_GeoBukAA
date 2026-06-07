@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>거북아 · GeoBukAA — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--neutral-100); font-family: var(--font-body); color: var(--neutral-900); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px 120px; }
+  a { color: inherit; }
+  ::selection { background: var(--coral-200); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="assets/art.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="app/art.jsx"></script>
+<script type="text/babel" src="app/icons.jsx"></script>
+<script type="text/babel" src="app/components.jsx"></script>
+<script type="text/babel" src="app/doc.jsx"></script>
+<script type="text/babel">
+const { useState } = React;
+const { Section, Frame, Grid, Swatch, Ramp, TypeRow } = window.DOC;
+
+/* ── Hero ── */
+function Hero() {
+  return (
+    <header style={{ padding: '76px 0 64px', borderBottom: '1px solid var(--neutral-200)', marginBottom: 64 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 30 }}>
+        <span style={{ width: 64, height: 64, borderRadius: 18, background: 'var(--coral-500)', display: 'flex',
+          alignItems: 'center', justifyContent: 'center' }}>
+          <Turtle variant={0} color="var(--sky-500)" eye="var(--sky-500)" height={36} />
+        </span>
+        <div>
+          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 44, lineHeight: 1, color: 'var(--coral-500)', letterSpacing: '-1px' }}>거북아 · GeoBukAA</div>
+          <div style={{ fontSize: 15, color: 'var(--neutral-500)', marginTop: 6 }}>Posture &amp; turtle-neck (거북목) wellness — Design System v1.0</div>
+        </div>
+      </div>
+      <p style={{ maxWidth: 620, fontSize: 17, lineHeight: 1.65, color: 'var(--neutral-700)', margin: 0 }}>
+        A warm, playful duotone system built on <strong style={{ color: 'var(--coral-600)' }}>coral</strong> and
+        <strong style={{ color: '#5BA8B2' }}> powder-blue</strong>. Rounded outlined surfaces, a handwritten display face,
+        and a cast of turtle characters give the habit-building app its friendly, encouraging voice.
+      </p>
+      <div style={{ display: 'flex', gap: 10, marginTop: 28, flexWrap: 'wrap' }}>
+        {[['Primary', 'var(--coral-500)', '#fff'], ['Surface', 'var(--sky-500)', 'var(--coral-600)'],
+          ['Display', 'transparent', 'var(--coral-600)'], ['9 screens', 'transparent', 'var(--neutral-600)']].map(([t, bg, fg], i) => (
+          <span key={i} style={{ padding: '8px 16px', borderRadius: 999, background: bg, color: fg,
+            border: bg === 'transparent' ? '1px solid var(--neutral-300)' : 'none', fontWeight: 600, fontSize: 13,
+            fontFamily: i === 2 ? 'var(--font-display)' : 'var(--font-body)' }}>{t}</span>
+        ))}
+      </div>
+    </header>
+  );
+}
+
+/* ── Colors ── */
+function Colors() {
+  const coral = [['coral-50','#FDF1EC'],['coral-100','#FADBCF'],['coral-200','#F6BEAB'],['coral-300','#F1A187'],['coral-400','#ED8B6C'],['coral-500','#E97451'],['coral-600','#DC5E39'],['coral-700','#B84B2C'],['coral-800','#8C3A23'],['coral-900','#5E2718']];
+  const neutral = [['neutral-0','#FFFFFF'],['neutral-50','#FCF6E4'],['neutral-100','#F2EFE8'],['neutral-200','#E4E1DA'],['neutral-300','#D9D9D9'],['neutral-400','#B4B1AA'],['neutral-500','#8A867E'],['neutral-600','#635F58'],['neutral-700','#45423D'],['neutral-800','#2A2825'],['neutral-900','#16100C']];
+  const brand = [['sky-500','#B0E0E6'],['sky-300','#C8E7EB'],['sky-700','#7FBEC6'],['cream','#FCF6E4'],['theme-blue','#468AD0'],['theme-teal','#46A098'],['gold','#F2B705']];
+  const map = a => a.map(([name, hex]) => ({ name, val: hex, hex }));
+  return (
+    <Section id="color" kicker="Foundations" title="Color">
+      <Ramp title="Primary · Coral" colors={map(coral)} />
+      <Ramp title="Neutral · warm (cream → ink)" colors={map(neutral)} />
+      <Ramp title="Brand surface & semantic / themes" colors={map(brand)} />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginTop: 8 }}>
+        <Frame label="Duotone pairing — type reads in the partner hue" pad={0} center={false}>
+          <div style={{ display: 'flex', height: 120 }}>
+            <div style={{ flex: 1, background: 'var(--coral-500)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontFamily: 'var(--font-display)', fontSize: 30, color: 'var(--sky-500)' }}>거북아</div>
+            <div style={{ flex: 1, background: 'var(--sky-500)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontFamily: 'var(--font-display)', fontSize: 30, color: 'var(--coral-500)' }}>거북아</div>
+          </div>
+        </Frame>
+        <Frame label="Roles" pad={20} center={false}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%', fontSize: 13 }}>
+            {[['--primary','coral-500'],['--on-primary','sky-500'],['--surface','sky-500'],['--on-surface','coral-500'],['--ink','neutral-900']].map(([k,v]) => (
+              <div key={k} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dashed var(--neutral-200)', paddingBottom: 8 }}>
+                <code style={{ fontFamily: 'ui-monospace, monospace', color: 'var(--coral-700)' }}>{k}</code>
+                <span style={{ color: 'var(--neutral-600)' }}>{v}</span>
+              </div>
+            ))}
+          </div>
+        </Frame>
+      </div>
+    </Section>
+  );
+}
+
+/* ── Typography ── */
+function Typography() {
+  return (
+    <Section id="type" kicker="Foundations" title="Typography">
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, marginBottom: 28 }}>
+        <Frame label="Display — Gaegu (HGSisuns_Pro stand-in). Headlines, banners, hero numerals." center={false}>
+          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 52, color: 'var(--coral-500)', lineHeight: 1 }}>나 이런 거북이야!</div>
+          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 40, color: 'var(--neutral-800)', lineHeight: 1 }}>DAY + 7</div>
+        </Frame>
+        <Frame label="Body — Pretendard. UI, labels, paragraphs (Regular · Medium · SemiBold · Bold)." center={false}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <span style={{ fontWeight: 400, fontSize: 18 }}>오늘의 스트레칭을 진행하세요</span>
+            <span style={{ fontWeight: 500, fontSize: 18 }}>자세 유지 · 알림에 반응</span>
+            <span style={{ fontWeight: 600, fontSize: 18 }}>스테이터스에 따른 추구미</span>
+            <span style={{ fontWeight: 700, fontSize: 18 }}>받아 마땅합니다</span>
+          </div>
+        </Frame>
+      </div>
+      <div style={{ background: '#fff', borderRadius: 16, border: '1px solid var(--neutral-200)', padding: '8px 28px' }}>
+        <TypeRow display sample="거북아 Display" role="Display" font="Gaegu" size={60} weight={700} />
+        <TypeRow display sample="나 이런 거북이야!" role="H1" font="Gaegu" size={40} weight={700} />
+        <TypeRow display sample="추구미 변경" role="Title / Banner" font="Gaegu" size={28} weight={700} />
+        <TypeRow sample="스테이터스에 따른 추구미" role="H2" font="Pretendard" size={24} weight={700} />
+        <TypeRow sample="하루기록 · 부위별 스트레칭" role="H3" font="Pretendard" size={20} weight={700} />
+        <TypeRow sample="오늘의 스트레칭을 진행하세요!" role="H4" font="Pretendard" size={18} weight={700} />
+        <TypeRow sample="누워서 스마트폰을 사용하는 상황을 위한 모드입니다." role="Body" font="Pretendard" size={16} weight={400} lh="1.6" />
+        <TypeRow sample="12개 스트레칭 · 5/6 하루" role="Body S" font="Pretendard" size={14} weight={500} />
+        <TypeRow sample="2023년 7월 · 12개 수집" role="Caption" font="Pretendard" size={12} weight={500} />
+        <TypeRow sample="S M T W T F S" role="Micro" font="Pretendard" size={10} weight={700} />
+      </div>
+    </Section>
+  );
+}
+
+/* ── Spacing / Radius / Elevation ── */
+function SpaceRadiusElevation() {
+  const space = [['1',4],['2',8],['3',12],['4',16],['5',20],['6',24],['8',32],['16',64]];
+  const radius = [['xs',6],['sm',8],['md',12],['lg',20],['pill',999]];
+  return (
+    <Section id="space" kicker="Foundations" title="Spacing · Radius · Elevation">
+      <Grid cols={2}>
+        <Frame label="Spacing scale — 4px base. Screen gutter = 32 (s-8)." center={false}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%' }}>
+            {space.map(([t, v]) => (
+              <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                <code style={{ width: 56, fontFamily: 'ui-monospace,monospace', fontSize: 12, color: 'var(--coral-700)' }}>s-{t}</code>
+                <div style={{ height: 14, width: v, background: 'var(--coral-400)', borderRadius: 3 }}></div>
+                <span style={{ fontSize: 12, color: 'var(--neutral-500)' }}>{v}px</span>
+              </div>
+            ))}
+          </div>
+        </Frame>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <Frame label="Radius — 12 cards · pill controls" center={false}>
+            <div style={{ display: 'flex', gap: 14, alignItems: 'flex-end', flexWrap: 'wrap' }}>
+              {radius.map(([t, v]) => (
+                <div key={t} style={{ textAlign: 'center' }}>
+                  <div style={{ width: 56, height: 56, background: 'var(--coral-100)', border: '2px solid var(--coral-500)',
+                    borderRadius: v, borderBottomLeftRadius: v > 100 ? 999 : v }}></div>
+                  <div style={{ fontSize: 11, color: 'var(--neutral-500)', marginTop: 6 }}>{t}</div>
+                </div>
+              ))}
+            </div>
+          </Frame>
+          <Frame label="Elevation — outline is the signature; shadows are sparing" center={false}>
+            <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
+              <div style={{ width: 88, height: 56, borderRadius: 12, boxShadow: 'inset 0 0 0 2px var(--coral-500)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, color: 'var(--coral-600)' }}>outline</div>
+              <div style={{ width: 88, height: 56, borderRadius: 12, background: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.10)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, color: 'var(--neutral-600)' }}>sm</div>
+              <div style={{ width: 88, height: 56, borderRadius: 12, background: '#fff', boxShadow: '0 4px 16px rgba(0,0,0,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, color: 'var(--neutral-600)' }}>md</div>
+            </div>
+          </Frame>
+        </div>
+      </Grid>
+    </Section>
+  );
+}
+
+/* ── Iconography & illustration ── */
+function IconsAndArt() {
+  const icons = ['chair','bell','dumbbell','fire','brain','bone','child-reaching','dna','crown','sun','droplet','medal','heart','hat','shield','shoe','glasses','flask','box','ticket','moon','bed','shoe-prints','wand-sparkles','play','bars','xmark','check'];
+  return (
+    <Section id="icon" kicker="Foundations" title="Iconography &amp; Illustration">
+      <Grid cols={2}>
+        <Frame label="System icons — single-weight, currentColor" center={false}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 16, width: '100%' }}>
+            {icons.map(n => (
+              <div key={n} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 30, color: 'var(--coral-500)' }}>
+                <Icon name={n} size={22} />
+              </div>
+            ))}
+          </div>
+        </Frame>
+        <Frame label="Bottom-nav glyphs — bespoke, drawn for the brand" center={false}>
+          <div style={{ display: 'flex', gap: 26, justifyContent: 'center', color: 'var(--coral-500)' }}>
+            <NavGlyph name="home" size={28} /><NavGlyph name="stats" size={28} /><NavGlyph name="stretch" size={28} /><NavGlyph name="shop" size={28} />
+          </div>
+        </Frame>
+      </Grid>
+      <div style={{ marginTop: 20 }}>
+        <Frame label="Turtle cast — the brand's emotional core. Flex · Sit · Slump · Upright · Escape. Recolor by context." pad={28}>
+          <div style={{ display: 'flex', gap: 28, alignItems: 'flex-end', justifyContent: 'center', flexWrap: 'wrap', width: '100%' }}>
+            {[0,1,2,3,4].map(v => (
+              <div key={v} style={{ background: 'var(--coral-500)', borderRadius: 14, padding: 16, height: 120, display: 'flex', alignItems: 'center' }}>
+                <Turtle variant={v} color="var(--sky-500)" eye="var(--coral-500)" height={90} />
+              </div>
+            ))}
+          </div>
+        </Frame>
+      </div>
+    </Section>
+  );
+}
+
+/* ── Components ── */
+function ComponentsSection() {
+  const [tog, setTog] = useState(true);
+  const [seg, setSeg] = useState(3);
+  const [tab, setTab] = useState('home');
+  return (
+    <Section id="components" kicker="UI Kit" title="Components">
+      <Grid cols={3}>
+        <Frame label="Banner pill (display)"><BannerPill>추구미 변경</BannerPill></Frame>
+        <Frame label="Play button"><PlayButton /></Frame>
+        <Frame label="더보기 / text action"><MoreButtonStandalone /></Frame>
+      </Grid>
+      <div style={{ height: 20 }}></div>
+      <Grid cols={2}>
+        <Frame label="Action card (outlined, watermark + play)" bg="var(--sky-500)" pad={20}>
+          <ActionCard title={'오늘의 스트레칭을\n진행하세요!'} watermark="dumbbell" />
+        </Frame>
+        <Frame label="Category card" bg="var(--sky-500)" pad={20}>
+          <div style={{ width: 180 }}><CategoryCard icon="brain" title="거북이 탈출" meta="12개 스트레칭" /></div>
+        </Frame>
+      </Grid>
+      <div style={{ height: 20 }}></div>
+      <Grid cols={2}>
+        <Frame label="Stat card — value + progress" bg="var(--sky-500)" pad={20}>
+          <div style={{ width: '100%' }}><StatCard icon="chair" label="자세 유지" value="4.2" unit="시간" progress={62} /></div>
+        </Frame>
+        <Frame label="Bottom navigation — 4 tabs, pill active state" bg="var(--sky-500)" pad={0} center={false}>
+          <div style={{ position: 'relative', height: 108, width: '100%' }}>
+            <BottomNav active={tab} onChange={setTab} />
+          </div>
+        </Frame>
+      </Grid>
+      <div style={{ height: 20 }}></div>
+      <Grid cols={3}>
+        <Frame label="Toggle switch" bg="var(--sky-500)"><Toggle on={tog} onChange={setTog} /></Frame>
+        <Frame label="Segmented 1–5 slider" bg="var(--sky-500)" pad={22}>
+          <div style={{ width: '100%' }}><SegSlider value={seg} onChange={setSeg} /></div>
+        </Frame>
+        <Frame label="Badges — earned & locked" bg="var(--sky-500)">
+          <div style={{ display: 'flex', gap: 12 }}><Badge icon="crown" /><Badge icon="sun" /><Badge locked /></div>
+        </Frame>
+      </Grid>
+      <div style={{ height: 20 }}></div>
+      <Grid cols={2}>
+        <Frame label="Section header" bg="#fff" pad={20} center={false}>
+          <div style={{ width: '100%', background: 'var(--sky-500)', borderRadius: 12, padding: '16px 0' }}>
+            <SectionHeader title="부위별 스트레칭" action="더보기 ›" />
+          </div>
+        </Frame>
+        <Frame label="Points / coin" bg="var(--sky-500)" pad={22}>
+          <div style={{ width: '100%' }}><Coin value="23,750" /></div>
+        </Frame>
+      </Grid>
+    </Section>
+  );
+}
+function MoreButtonStandalone() {
+  return (
+    <button style={{ background: 'none', borderRadius: 999, boxShadow: 'inset 0 0 0 2px var(--coral-500)', border: 'none',
+      cursor: 'pointer', padding: '12px 28px', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 14, color: 'var(--coral-500)',
+      display: 'inline-flex', alignItems: 'center', gap: 6 }}>더보기 <Icon name="chevron-right" size={13} color="var(--coral-500)" /></button>
+  );
+}
+
+function DocApp() {
+  return (
+    <div className="wrap">
+      <Hero />
+      <Colors />
+      <Typography />
+      <SpaceRadiusElevation />
+      <IconsAndArt />
+      <ComponentsSection />
+      <footer style={{ borderTop: '1px solid var(--neutral-200)', paddingTop: 28, color: 'var(--neutral-500)', fontSize: 13 }}>
+        거북아 · GeoBukAA Design System — reconstructed from Figma. Pretendard + Gaegu · coral × powder-blue duotone.
+      </footer>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<DocApp />);
+</script>
+</body>
+</html>
