@@ -11,10 +11,10 @@ const C = {
 };
 
 /* ── App header: wordmark + hamburger ── */
-function PhoneHeader({ onMenu, topPad = 54 }) {
+function PhoneHeader({ onMenu }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      padding: `${topPad}px var(--s-8) 8px` }}>
+      padding: 'calc(env(safe-area-inset-top, 0px) + 16px) var(--s-8) 8px' }}>
       <Wordmark />
       <button onClick={onMenu} aria-label="menu" style={{
         background: 'none', border: 'none', cursor: 'pointer', padding: 6, lineHeight: 0, color: C.coral }}>
@@ -181,7 +181,7 @@ const NAV_TABS = [
 ];
 function BottomNav({ active, onChange, style = {} }) {
   return (
-    <div style={{ position: 'absolute', left: 'var(--s-8)', right: 'var(--s-8)', bottom: 22, height: 64,
+    <div style={{ position: 'absolute', left: 'var(--s-8)', right: 'var(--s-8)', bottom: 'calc(env(safe-area-inset-bottom, 0px) + 10px)', height: 64,
       borderRadius: 'var(--r-pill)', boxShadow: 'var(--elev-outline)', background: C.sky,
       display: 'flex', alignItems: 'center', padding: '0 24px', gap: 8, ...style }}>
       {NAV_TABS.map(t => {

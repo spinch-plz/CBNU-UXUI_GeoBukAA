@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>거북아 QR 코드</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      background: #EAF6F8;
+      font-family: 'Pretendard', -apple-system, system-ui, sans-serif;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #FF5A36;
+      letter-spacing: -0.5px;
+    }
+    #qr-wrap {
+      background: #fff;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    }
+    #qr-wrap svg { display: block; }
+    p {
+      font-size: 14px;
+      color: #888;
+      word-break: break-all;
+      text-align: center;
+      max-width: 320px;
+    }
+    a { color: #FF5A36; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>거북아 · GeoBukAA</h1>
+  <div id="qr-wrap"></div>
+  <p>
+    <a href="https://spinch-plz.github.io/CBNU-UXUI_GeoBukAA/" target="_blank">
+      https://spinch-plz.github.io/CBNU-UXUI_GeoBukAA/
+    </a>
+  </p>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <script>
+    const qr = qrcode(0, 'M');
+    qr.addData('https://spinch-plz.github.io/CBNU-UXUI_GeoBukAA/');
+    qr.make();
+    document.getElementById('qr-wrap').innerHTML = qr.createSvgTag(6, 0);
+  </script>
+</body>
+</html>

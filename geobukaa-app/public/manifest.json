@@ -1,0 +1,12 @@
+{
+  "name": "거북아 · GeoBukAA",
+  "short_name": "거북아",
+  "description": "자세 교정 앱 거북아",
+  "start_url": "/CBNU-UXUI_GeoBukAA/",
+  "scope": "/CBNU-UXUI_GeoBukAA/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EAF6F8",
+  "theme_color": "#EAF6F8",
+  "icons": []
+}

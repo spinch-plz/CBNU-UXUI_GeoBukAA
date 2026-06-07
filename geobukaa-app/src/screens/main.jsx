@@ -12,7 +12,7 @@ function Screen({ children, nav, active, onNav, pad = true }) {
   return (
     <div style={{ position: 'relative', height: '100%', background: S.sky, overflow: 'hidden' }}>
       <div style={{ position: 'absolute', inset: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch',
-        paddingBottom: nav ? 110 : 24 }}>
+        paddingBottom: nav ? 'calc(env(safe-area-inset-bottom, 0px) + 100px)' : 'calc(env(safe-area-inset-bottom, 0px) + 24px)' }}>
         {children}
       </div>
       {nav && <BottomNav active={active} onChange={onNav} />}

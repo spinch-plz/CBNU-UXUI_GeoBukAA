@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { IOSDevice } from './components/IOSDevice.jsx';
+import React, { useState } from 'react';
 import { Onboarding, HomeScreen, StatsScreen, StretchScreen, ShopScreen } from './screens/main.jsx';
 import { Drawer, ChugumiScreen, ThemeScreen, AlarmScreen } from './screens/settings.jsx';
 
 function Toast({ msg, show }) {
   return (
-    <div style={{ position: 'absolute', left: '50%', bottom: 108, transform: `translateX(-50%) translateY(${show ? 0 : 16}px)`,
+    <div style={{ position: 'absolute', left: '50%', bottom: 'calc(env(safe-area-inset-bottom, 0px) + 108px)', transform: `translateX(-50%) translateY(${show ? 0 : 16}px)`,
       zIndex: 90, background: 'var(--coral-500)', color: '#fff', padding: '12px 22px', borderRadius: 9999,
       fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14, boxShadow: 'var(--elev-md)',
       opacity: show ? 1 : 0, transition: 'all .25s', pointerEvents: 'none', whiteSpace: 'nowrap' }}>{msg}</div>
@@ -22,15 +21,6 @@ export default function App() {
   const onNav = (id) => { setView(id); setDrawer(false); };
   const onGo = (id) => { setView(id); setDrawer(false); };
 
-  const [scale, setScale] = useState(1);
-  useEffect(() => {
-    const fit = () => {
-      const m = 24;
-      setScale(Math.min(1, (window.innerHeight - m) / 874, (window.innerWidth - m) / 402));
-    };
-    fit(); window.addEventListener('resize', fit); return () => window.removeEventListener('resize', fit);
-  }, []);
-
   const screens = {
     home: <HomeScreen onMenu={onMenu} onNav={onNav} onPlay={fireToast} />,
     stats: <StatsScreen onMenu={onMenu} onNav={onNav} />,
@@ -42,18 +32,14 @@ export default function App() {
   };
 
   return (
-    <div style={{ transform: `scale(${scale})`, transformOrigin: 'center', transition: 'transform .1s' }}>
-      <IOSDevice>
-        <div style={{ position: 'relative', height: '100%' }}>
-          {view === 'onboarding'
-            ? <Onboarding onEnter={() => setView('home')} />
-            : screens[view]}
-          {view !== 'onboarding' && (
-            <Drawer open={drawer} onClose={() => setDrawer(false)} onGo={onGo} />
-          )}
-          <Toast msg="스트레칭을 시작합니다 🐢" show={toast} />
-        </div>
-      </IOSDevice>
+    <div style={{ position: 'fixed', inset: 0, overflow: 'hidden' }}>
+      {view === 'onboarding'
+        ? <Onboarding onEnter={() => setView('home')} />
+        : screens[view]}
+      {view !== 'onboarding' && (
+        <Drawer open={drawer} onClose={() => setDrawer(false)} onGo={onGo} />
+      )}
+      <Toast msg="스트레칭을 시작합니다 🐢" show={toast} />
     </div>
   );
 }

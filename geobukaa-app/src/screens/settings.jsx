@@ -24,7 +24,7 @@ function Drawer({ open, onClose, onGo }) {
       <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '74%', background: SS.sky,
         transform: open ? 'translateX(0)' : 'translateX(100%)', transition: 'transform .28s cubic-bezier(.4,0,.2,1)',
         boxShadow: '-12px 0 40px rgba(0,0,0,0.12)', display: 'flex', flexDirection: 'column',
-        padding: '60px 32px 40px' }}>
+        padding: 'calc(env(safe-area-inset-top, 0px) + 16px) 32px calc(env(safe-area-inset-bottom, 0px) + 20px)' }}>
         <button onClick={onClose} aria-label="close" style={{ alignSelf: 'flex-end', background: 'none', border: 'none',
           cursor: 'pointer', color: SS.coral, padding: 6, lineHeight: 0 }}>
           <Icon name="xmark" size={30} color={SS.coral} />
