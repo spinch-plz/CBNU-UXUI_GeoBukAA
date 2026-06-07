@@ -8,5 +8,12 @@
   "orientation": "portrait",
   "background_color": "#EAF6F8",
   "theme_color": "#EAF6F8",
-  "icons": []
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
